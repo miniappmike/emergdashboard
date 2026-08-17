@@ -1,0 +1,127 @@
+{
+  "project_overview": "Team Dashboard & Notes Platform featuring a free-form draggable canvas workspace, real-time chat, and robust file/note management. The aesthetic blends Swiss Brutalism with modern tactile elements, focusing on high contrast, stark layouts, and physical window manipulation.",
+  "theme": {
+    "default": "light",
+    "supported_modes": ["light", "dark", "custom_user_themed"],
+    "vibe": "Tactile, functional, precise, and highly customizable. It should feel like a physical desk with the power of an infinite digital command center."
+  },
+  "typography": {
+    "primary_font_family": "Chivo",
+    "primary_font_usage": "Headings, Window Titles, Brand Typography",
+    "secondary_font_family": "IBM Plex Sans",
+    "secondary_font_usage": "Body, Chat text, Notes content, UI labels",
+    "scale": {
+      "h1": "text-4xl tracking-tighter font-black",
+      "h2": "text-2xl tracking-tight font-bold",
+      "h3": "text-xl font-bold",
+      "body": "text-base leading-relaxed",
+      "small_label": "text-xs tracking-[0.15em] uppercase font-bold"
+    }
+  },
+  "colors": {
+    "light_mode": {
+      "background": "#F4F5F7",
+      "canvas_bg": "#FFFFFF",
+      "foreground": "#0A0A0B",
+      "primary": "#E63946",
+      "primary_foreground": "#FFFFFF",
+      "surface": "#FFFFFF",
+      "border": "#E2E8F0",
+      "muted": "#8D99AE",
+      "navy_accent": "#1D3557"
+    },
+    "dark_mode": {
+      "background": "#0B132B",
+      "canvas_bg": "#050914",
+      "foreground": "#F8F9FA",
+      "primary": "#E63946",
+      "primary_foreground": "#FFFFFF",
+      "surface": "#131E3A",
+      "border": "#2A3D5A",
+      "muted": "#8D99AE",
+      "navy_accent": "#457B9D"
+    },
+    "custom_theming_vars": [
+      "--user-canvas-bg",
+      "--user-window-border",
+      "--user-window-border-width",
+      "--user-text-color"
+    ],
+    "notes": "Color is function. Avoid gradient overload. The canvas background should feature a subtle 1px dot grid pattern in both modes to emphasize the 'workspace' feel. Red is strictly for primary actions, unread indicators, and active states."
+  },
+  "layouts": {
+    "app_shell": "100vh 100vw hidden overflow. The canvas is the scrollable/draggable area.",
+    "header": "Fixed at top, z-50. Height: 64px. Contains Multi-org Switcher (left), Global Search (center), Refresh, Activity Bell, Profile (right).",
+    "sidebar_left": "Collapsible. Width: 280px. Houses Navigation: Home Canvas, Shared Library, Chat, Calendar, Settings.",
+    "canvas_area": "Takes remaining calc(100vh - 64px). Infinite pan/zoom or fixed draggable boundary using react-rnd."
+  },
+  "components": {
+    "canvas_workspace": {
+      "description": "The core signature experience. A massive grid background where users pin windows.",
+      "tech_recommendation": "Use `react-rnd` (React Resize and Drag) for the windows. Manage window coordinates in state.",
+      "styling": "Background must have a CSS radial-gradient or repeating-linear-gradient to create a dot matrix or grid overlay. Windows should have absolute positioning driven by state."
+    },
+    "draggable_windows": {
+      "description": "Cards acting as files/notes on the canvas.",
+      "styling": "Cardless aesthetic. 0px or 2px border radius. Sharp 1px solid border (uses --user-window-border variable). In light mode, crisp box-shadow: 4px 4px 0px rgba(0,0,0,0.1) for a slight neo-brutalist pop. Drag handle should be a subtle top bar on hover.",
+      "states": "Active/Focused window comes to front (highest z-index), border color changes to Primary Red."
+    },
+    "notes_editor": {
+      "description": "Rich text + whiteboard.",
+      "styling": "Clean, minimal toolbar. Whiteboard toggle reveals a canvas element. Use standard Shadcn dropdowns for formatting.",
+      "tech_recommendation": "Use `@tiptap/react` for text, `tldraw` or standard canvas API for the lightweight whiteboard."
+    },
+    "chat_panel": {
+      "description": "Team channel and DMs. Can be a pinned window or side drawer.",
+      "styling": "Message bubbles should not be bubbly. Sharp rectangles. Different background for @mentions (Navy or Red tint). Avatar on the left."
+    },
+    "header_bar": {
+      "styling": "Solid background. 1px bottom border. Do NOT use transparent backgrounds for the header. Org switcher uses a heavy typography dropdown."
+    },
+    "permissions_screen": {
+      "styling": "Dense, data-heavy grid. Use Shadcn Switch/Toggles. No generic cards; use a strict table-like row layout with borders separating users."
+    }
+  },
+  "motion": {
+    "window_drag": "No transition on transform while dragging to prevent lag. Transition on box-shadow to appear 'lifted' (shadow-2xl) while active.",
+    "hover_states": "Crisp, instantaneous color swaps. No mushy 0.3s transitions. Use 0.1s ease-out.",
+    "popups": "Scale-in from 0.95 to 1, opacity 0 to 1 over 150ms."
+  },
+  "media_and_images": {
+    "icons": "Use `lucide-react`. Stroke width 1.5 or 2 based on density.",
+    "image_urls": {
+      "avatars": [
+        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzZ8MHwxfHNlYXJjaHwyfHxwcm9mZXNzaW9uYWwlMjBwcm9maWxlJTIwYXZhdGFyJTIwaGVhZHNob3R8ZW58MHx8fHwxNzg2OTU0MTI4fDA&ixlib=rb-4.1.0&q=85",
+        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzZ8MHwxfHNlYXJjaHwzfHxwcm9mZXNzaW9uYWwlMjBwcm9maWxlJTIwYXZhdGFyJTIwaGVhZHNob3R8ZW58MHx8fHwxNzg2OTU0MTI4fDA&ixlib=rb-4.1.0&q=85",
+        "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzZ8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjBwcm9maWxlJTIwYXZhdGFyJTIwaGVhZHNob3R8ZW58MHx8fHwxNzg2OTU0MTI4fDA&ixlib=rb-4.1.0&q=85",
+        "https://images.pexels.com/photos/29852895/pexels-photo-29852895.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+      ],
+      "canvas_backgrounds_abstract": [
+        "https://images.unsplash.com/photo-1530982011887-3cc11cc85693?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1Nzh8MHwxfHNlYXJjaHwyfHx2aXZpZCUyMGFic3RyYWN0JTIwb3JhbmdlJTIwZ3JhZGllbnQlMjBiYWNrZ3JvdW5kfGVufDB8fHx8MTc4Njk1NDEyOHww&ixlib=rb-4.1.0&q=85",
+        "https://images.unsplash.com/photo-1759185301751-2a8fa1314d7b?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA0MTJ8MHwxfHNlYXJjaHwyfHxtaW5pbWFsaXN0JTIwZ3JleSUyMGdyaWQlMjB0ZXh0dXJlJTIwYmFja2dyb3VuZHxlbnwwfHx8fDE3ODY5NTQxMjh8MA&ixlib=rb-4.1.0&q=85"
+      ]
+    },
+    "instructions": "Use avatars for team members and chat. Use the abstract vivid gradient in dark mode settings panels or premium empty states. Use the minimalist grey texture as an optional user-selected canvas background."
+  },
+  "accessibility": {
+    "contrast": "Ensure APCA contrast ratio. Navy on Light Grey, White on Deep Navy.",
+    "keyboard": "Canvas items must be focusable. Implement basic keyboard nudging (arrow keys) for focused canvas windows.",
+    "testing": "All interactive elements (buttons, inputs, menu items, window headers, tabs) MUST have `data-testid` attributes."
+  },
+  "instructions_to_main_agent": {
+    "dependencies": "Run: yarn add react-rnd lucide-react @tiptap/react @tiptap/starter-kit clsx tailwind-merge date-fns sonner",
+    "shadcn_components": "Install standard shadcn components: button, input, dialog, dropdown-menu, switch, tabs, avatar, scroll-area, popover.",
+    "canvas_implementation": "Create a `Canvas` component wrapping `react-rnd` elements. Maintain an array of nodes (id, x, y, width, height, type, content) in React state. Update state `onDragStop` and `onResizeStop` to avoid lag.",
+    "customization_engine": "Implement a hook or context that injects CSS variables to the document root or canvas container for background color, border width, and text luminance."
+  },
+  "UNIVERSAL_GUIDELINES_FOR_MAIN_AGENT": [
+    "You tend to converge toward generic outputs. Break the mold. Make it feel tactile and sharp.",
+    "DO NOT center align the app container. `.App { text-align: center; }` is forbidden.",
+    "Create depth through layered design elements with z-index hierarchy, particularly for draggable windows.",
+    "Never use generic AI emojis (🤖, 💡, 🎯). Use lucide-react icons.",
+    "Use 2-3x more spacing for forms and padding inside notes, but keep chat dense and readable.",
+    "Every window, button, and input MUST have a `data-testid` like `data-testid=\"org-switcher-dropdown\"`.",
+    "Always apply hover states to interactive elements. Ensure focus states have higher contrast.",
+    "Never use purely transparent backgrounds for dropdowns or modals over the canvas."
+  ]
+}
